@@ -1,11 +1,34 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
+const users = require('./routes/api/users');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
 const app = express();
+
+//DB config
+const db = require('./config/keys').mongoURI;
+
+// Connect to MongoDB and display errors
+mongoose
+    .connect(db)
+    .then(() => {
+        console.log('MongoDB connected')
+    })
+    .catch(err => {
+        console.log(err)
+    });
 
 //initializes to a route that's / which is the homepage
 app.get('/', (req, res) => {
     res.send('Hello! My name is Josh')
 });
+
+// Use routes
+app.use('/api/users', users);
+app.use('/api/profile', profile);
+app.use('/api/posts', posts);
 
 //process.env.port for Heroku
 const PORT = process.env.PORT || 5000;
