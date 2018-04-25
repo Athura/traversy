@@ -8,10 +8,10 @@ module.exports = function validateProfileInput(data) {
     data.email = !isEmpty(data.handle) ? data.handle : '';
     data.status = !isEmpty(data.status) ? data.status : '';
     data.skills = !isEmpty(data.skills) ? data.skills : '';
-
+   
     // required fields
     if(!validator.isLength(data.handle, { min: 2, max: 40 })) {
-        errors.handle = 'Handle needs to be between 2 and 4 characters';
+       errors.handle = 'Handle needs to be between 2 and 40 characters';
     }
 
     if(validator.isEmpty(data.handle)) {
