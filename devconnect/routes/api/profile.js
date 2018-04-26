@@ -14,7 +14,7 @@ const User = require('../../models/User');
 // @description Tests profile route
 // @access Public
 router.get('/test', (req, res) => res.json({
-    msg: "Profile Works"
+    msg: 'Profile Works'
 }));
 
 // @route GET api/profile
@@ -40,7 +40,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @description Tests profile route
 // @access Public
 router.get('/test', (req, res) => res.json({
-    msg: "Profile Works"
+    msg: 'Profile Works'
 }));
 
 // @route POST api/profile
