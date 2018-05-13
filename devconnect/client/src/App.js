@@ -9,11 +9,7 @@ import { clearCurrentProfile } from "./actions/profileActions";
 import { Provider } from "react-redux";
 import store from "./store";
 
-<<<<<<< HEAD
-import PrivateRoute from './components/common/privateRoute';
-=======
-import PrivateRoute from "./components/common/PrivateRoute";
->>>>>>> 3abcd3391de57b29aa25e0eeb3084f9dd25e60b6
+import PrivateRoute from "./components/common/privateRoute";
 
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -62,8 +58,6 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
-<<<<<<< HEAD
-=======
               <Switch>
                 <PrivateRoute
                   exact
@@ -71,7 +65,6 @@ class App extends Component {
                   component={CreateProfile}
                 />
               </Switch>
->>>>>>> 3abcd3391de57b29aa25e0eeb3084f9dd25e60b6
             </div>
             <Footer />
           </div>
