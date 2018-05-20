@@ -24,5 +24,4 @@ const UserSchema = new Schema({
   }
 });
 
-// first param is what we want model named and 2nd is the schema
 module.exports = User = mongoose.model('users', UserSchema);

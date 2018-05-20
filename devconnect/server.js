@@ -9,44 +9,30 @@ const posts = require('./routes/api/posts');
 
 const app = express();
 
-// Body Parser middleware
-// allows us to access req.body.___
-app.use(bodyParser.urlencoded({extended: false}));
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//DB config
+// DB Config
 const db = require('./config/keys').mongoURI;
 
-// Connect to MongoDB and display errors
+// Connect to MongoDB
 mongoose
-    .connect(db)
-    .then(() => {
-        console.log('MongoDB connected')
-    })
-    .catch(err => {
-        console.log(err)
-    });
-
-//initializes to a route that's / which is the homepage
-app.get('/', (req, res) => {
-    res.send('Hello! My name is Josh')
-});
+  .connect(db)
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
 
-// Passport config 
+// Passport Config
 require('./config/passport')(passport);
 
-// Use routes
+// Use Routes
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 
-//process.env.port for Heroku
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-//run node server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-});
+app.listen(port, () => console.log(`Server running on port ${port}`));

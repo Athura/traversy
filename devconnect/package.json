@@ -1,7 +1,7 @@
 {
-  "name": "devconnect",
+  "name": "devconnector",
   "version": "1.0.0",
-  "description": "Social network",
+  "description": "Social network for developers",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -10,7 +10,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "Josh Johnson",
+  "author": "Brad Traversy",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -18,8 +18,8 @@
     "concurrently": "^3.5.1",
     "express": "^4.16.3",
     "gravatar": "^1.6.0",
-    "jsonwebtoken": "^8.2.1",
-    "mongoose": "^5.0.16",
+    "jsonwebtoken": "^8.2.0",
+    "mongoose": "^5.0.12",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^9.4.1"

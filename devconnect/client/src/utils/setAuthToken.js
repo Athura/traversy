@@ -1,13 +1,12 @@
-import axios from "axios";
-//we use axios here so we dont have to manually make sure we have a token, axios automatically sets authtoken
+import axios from 'axios';
 
 const setAuthToken = token => {
   if (token) {
-    //Apply to every request
-    axios.defaults.headers.common["Authorization"] = token;
+    // Apply to every request
+    axios.defaults.headers.common['Authorization'] = token;
   } else {
-    // delete auth header
-    delete axios.defaults.headers.common["Authorization"];
+    // Delete auth header
+    delete axios.defaults.headers.common['Authorization'];
   }
 };
 

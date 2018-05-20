@@ -1,32 +1,31 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
-import TextFieldGroup from "../common/TextFieldGroup";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       errors: {}
     };
 
-    this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  // If a user is logged in then they will not see the login page
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push('/dashboard');
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push('/dashboard');
     }
 
     if (nextProps.errors) {
@@ -34,12 +33,8 @@ class Login extends Component {
     }
   }
 
-  _onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  _onSubmit(event) {
-    event.preventDefault();
+  onSubmit(e) {
+    e.preventDefault();
 
     const userData = {
       email: this.state.email,
@@ -47,6 +42,10 @@ class Login extends Component {
     };
 
     this.props.loginUser(userData);
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -61,13 +60,13 @@ class Login extends Component {
               <p className="lead text-center">
                 Sign in to your DevConnector account
               </p>
-              <form onSubmit={this._onSubmit}>
+              <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Email Address"
                   name="email"
                   type="email"
                   value={this.state.email}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   error={errors.email}
                 />
 
@@ -76,10 +75,9 @@ class Login extends Component {
                   name="password"
                   type="password"
                   value={this.state.password}
-                  onChange={this._onChange}
+                  onChange={this.onChange}
                   error={errors.password}
                 />
-
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
