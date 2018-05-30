@@ -37,4 +37,8 @@ import isEmpty from '../../validation/is-empty';
   }
 }
 
+ProfileAbout.propTypes = {
+  profile: PropTypes.object.isRequired
+}
+
 export default ProfileAbout;

@@ -103,33 +103,6 @@ router.get('/user/:user_id', (req, res) => {
     );
 });
 
-router.post(
-  '/',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    profileFields.social = {};
-      if (req.body.youtube)
-      profileFields.social.youtube = prependHttp(req.body.youtube, {
-      https: true
-      });;
-      if (req.body.twitter)
-      profileFields.social.twitter = prependHttp(req.body.twitter, {
-      https: true
-      });
-      if (req.body.facebook)
-      profileFields.social.facebook = prependHttp(req.body.facebook, {
-      https: true
-      });
-      if (req.body.linkedin)
-      profileFields.social.linkedin = prependHttp(req.body.linkedin, {
-      https: true
-      });
-      if (req.body.instagram)
-      profileFields.social.instagram = prependHttp(req.body.instagram, {
-      https: true
-      });
-  }
-)
 
 // @route   POST api/profile
 // @desc    Create or edit user profile

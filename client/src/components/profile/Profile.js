@@ -17,6 +17,12 @@ import { getProfileByHandle } from '../../actions/profileActions';
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.profile.profile === null && this.props.profile.loading) {
+            this.props.history.push('/not-found');
+        }
+    }
+
   render() {
       const { profile, loading } = this.props.profile;
       let profileContent;
@@ -37,7 +43,7 @@ import { getProfileByHandle } from '../../actions/profileActions';
                   <ProfileHeader profile={profile} />
                   <ProfileAbout profile={profile} />
                   <ProfileCreds education={profile.education} experience={profile.experience} />
-                  <ProfileGithub />
+                  {profile.githubusername ? (<ProfileGithub username={profile.githubusername} />) : null}
               </div>
           )
       }
