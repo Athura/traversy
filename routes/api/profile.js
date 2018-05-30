@@ -13,6 +13,8 @@ const Profile = require('../../models/Profile');
 // Load User Model
 const User = require('../../models/User');
 
+const prependHttp = require('prepend-http');
+
 // @route   GET api/profile/test
 // @desc    Tests profile route
 // @access  Public
@@ -100,6 +102,34 @@ router.get('/user/:user_id', (req, res) => {
       res.status(404).json({ profile: 'There is no profile for this user' })
     );
 });
+
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    profileFields.social = {};
+      if (req.body.youtube)
+      profileFields.social.youtube = prependHttp(req.body.youtube, {
+      https: true
+      });;
+      if (req.body.twitter)
+      profileFields.social.twitter = prependHttp(req.body.twitter, {
+      https: true
+      });
+      if (req.body.facebook)
+      profileFields.social.facebook = prependHttp(req.body.facebook, {
+      https: true
+      });
+      if (req.body.linkedin)
+      profileFields.social.linkedin = prependHttp(req.body.linkedin, {
+      https: true
+      });
+      if (req.body.instagram)
+      profileFields.social.instagram = prependHttp(req.body.instagram, {
+      https: true
+      });
+  }
+)
 
 // @route   POST api/profile
 // @desc    Create or edit user profile
