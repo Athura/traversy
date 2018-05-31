@@ -2,36 +2,39 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
- class ProfileGithub extends Component {
-   constructor(props) {
-     super(props);
-     // we dont use github here because it's only relevant to this component
-     this.state = {
-        clientId: '66de7188f765de860070',
-        clientSecret: '33dfa2ef05aeba0d2b9e47c6d626113f3a278b76',
-        count: 5,
-        sort: 'created: asc',
-        repos: []
-     }
-   }
+class ProfileGithub extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clientId: '26c196bacea7db10cf48',
+      clientSecret: '0885cb690e07d2a93a6afb0891fb552fd9f7aa53',
+      count: 5,
+      sort: 'created: asc',
+      repos: []
+    };
+  }
 
-   componentDidMount() {
-     const { username } = this.props;
-     const { count, sort, clientId, clientSecret } = this.state;
+  componentDidMount() {
+    const { username } = this.props;
+    const { count, sort, clientId, clientSecret } = this.state;
 
-     fetch(`https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`)
+    fetch(
+      `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
+    )
       .then(res => res.json())
       .then(data => {
-        if(this.refs.myRef) {
-          this.setState({repos: data})
+        if (this.refs.myRef) {
+          this.setState({ repos: data });
         }
-      }).catch(err => console.log(err))
-   }
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     const { repos } = this.state;
+
     const repoItems = repos.map(repo => (
-      <div key={repo.id} className="card card-body mb-2" >
+      <div key={repo.id} className="card card-body mb-2">
         <div className="row">
           <div className="col-md-6">
             <h4>
@@ -42,28 +45,31 @@ import PropTypes from 'prop-types';
             <p>{repo.description}</p>
           </div>
           <div className="col-md-6">
-            <span className="badge badge-info mr-1">Stars: {repo.stargazers_count}</span>
-            <span className="badge badge-secondary mr-1">Watchers: {repo.watchers_count}</span>
-            <span className="badge badge-success">Forks: {repo.forks_count}</span>
+            <span className="badge badge-info mr-1">
+              Stars: {repo.stargazers_count}
+            </span>
+            <span className="badge badge-secondary mr-1">
+              Watchers: {repo.watchers_count}
+            </span>
+            <span className="badge badge-success">
+              Forks: {repo.forks_count}
+            </span>
           </div>
         </div>
       </div>
-    ))
-
+    ));
     return (
       <div ref="myRef">
         <hr />
-        <h3 className="mb-4">
-          Latest Github repos
-        </h3>
+        <h3 className="mb-4">Latest Github Repos</h3>
         {repoItems}
       </div>
-    )
+    );
   }
 }
 
 ProfileGithub.propTypes = {
   username: PropTypes.string.isRequired
-}
+};
 
 export default ProfileGithub;
