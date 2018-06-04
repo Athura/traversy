@@ -39,7 +39,7 @@ if(process.env.NODE_ENV === 'production') {
   // Set a static folder
   app.use(express.static('client/build'));
 
-  app.use('*', (req, res) => {
+  app.use('/traversy/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 }
